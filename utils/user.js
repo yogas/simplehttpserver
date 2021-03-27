@@ -3,7 +3,12 @@ const parseBodyParams = require('./parseBodyParams')
 
 const readDB = () => {
   let db = []
-  const json = fs.readFileSync('./db/db.json', 'utf-8')
+  let json = ''
+  try {
+    json = fs.readFileSync('./db/db.json', 'utf-8')
+  } catch (err) { 
+    console.log('Error: /db/db.json was not found')
+  }
   if (json.trim() !== '') {
     db = JSON.parse(json)
   }
